@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculer salaire</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="./cal-sal.js"></script>
+    
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="conteneur">
+            <div class="calcul-salaire-brut-net" id="salaire">
+                <div class="lead">Calculer et convertir votre salaire brut en salaire net</div>
+                <div class="calculatrice-brut-net">
+                    <form method="post" action="">
+                        <table class="100pourcent cellpadding5 table">
+                            <thead>
+                                <tr class="bordureBasGrise">
+                                    <th>Salaire</th>
+                                    <th>Brut</th>
+                                    <th>Net</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bordureBasGrise">
+                                    <th class="pourcent20 verticalAlignMiddle">
+                                        <div>Annuel</div>
+                                    </th>
+                                    <td class="textAlignCenter pourcent40">
+                                        <div class="saisie">
+                                            <input type="text" name="annuelBrut" id="annuelBrut" title="Cliquez ici pour saisir votre salaire annuel brut"  value="0 €"  class="input-calcul">
+                                        </div>
+                                    </td>
+                                    <td class="textAlignCenter pourcent40">
+                                        <div class="saisie">
+                                            <input type="text" name="annuelNet" id="annuelNet" title="Cliquez ici pour saisir votre salaire annuel net"  value="0 €"  class="input-calcul">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="bordureBasGrise">
+                                    <th class="verticalAlignMiddle">
+                                        <div>Mensuel</div>
+                                    </th>
+                                    <td>
+                                        <div class="saisie">
+                                            <input type="text" name="mensuelBrut" id="mensuelBrut" title="Cliquez ici pour saisir votre salaire mensuel brut"  value="0" class="input-calcul">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="saisie">
+                                            <input type="text" name="mensuelNet" id="mensuelNet" title="Cliquez ici pour saisir votre salaire mensuel net" value="0 €"  class="input-calcul">
+                                        </div>
+                                        <div id="differenceMensuel"></div>
+                                    </td>
+                                </tr>
+                                <tr class="bordureBasGrise">
+                                    <th class="verticalAlignMiddle">
+                                        <div>Journalier</div>
+                                    </th>
+                                    <td>
+                                        <div class="saisie">
+                                            <input type="text" name="journalierBrut" id="journalierBrut" title="Cliquez ici pour saisir votre salaire journalier brut"  value="0 €" class="input-calcul">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="saisie">
+                                            <input type="text" name="journalierNet" id="journalierNet" title="Cliquez ici pour saisir votre salaire journalier net" value="0 €"  class="input-calcul">
+                                        </div>
+                                        <div id="differenceJournalier"></div>
+                                    </td>
+                                </tr>
+                                <tr class="bordureBasGrise">
+                                    <th class="verticalAlignMiddle">
+                                        <div>Horaires</div>
+                                    </th>
+                                    <td>
+                                        <div class="saisie">
+                                            <input type="text" name="horairesBrut" id="horairesBrut" title="Cliquez ici pour saisir votre salaire horaires brut" value="0 €"  class="input-calcul">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="saisie">
+                                            <input type="text" name="horairesNet" id="horairesNet" title="Cliquez ici pour saisir votre salaire horaires net" value="0 €"  class="input-calcul">
+                                        </div>
+                                        <div id="differenceHoraires"></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="no-padding ">
+                                        <div class="calcul-salaire-brut-net-options">
+                                            <table class="pourcent100 cellpadding5 table2">
+                                                <tr>
+                                                    <th class="verticalAlignMiddle pourcent18 pas-important">
+                                                        <div>Options</div>
+                                                    </th>
+                                                    <td>
+                                                            <span id="saisie-annuel">
+                                                                <input type="button" name="annuel" id="annuel" title="cliquer pour appliquer le smic" value="Appliquer le SMIC" />
+                                                            </span>
+                                                    </td>
+                                                    <td>
+                                                            <button id="saisie-taux" title="saisir le taux en % correspondant aux charges sociales" href="#">
+                                                                Taux % : 
+                                                                <input type="text" name="charges" id="charges"  value="23"  class="input-calcul2" />
+                                                            </button>
+                                                    </td>
+                                                    <td>
+                                                            <button id="saisie-mois" title="saisir le nombre de mois, ex : 13">
+                                                                <input type="text" name="mois" id="mois"  value="12" class="input-calcul2" />
+                                                                Mois : 
+                                                            </button>
+                                                    </td>
+                                                    <td>
+                                                            <button id="saisie-heures"  title="saisir le nombre d'heure hebdomadaire / semaine">
+                                                                <input type="text" name="heures" id="heures"  value="35" class="input-calcul2" />
+                                                                Heures : 
+                                                            </button>
+                                                    </td>
+                                                </tr>
+                                                <tr class="ligne-vide"><td colspan="6">&nbsp;</td></tr>
+                                                <tr>
+                                                    <th class="verticalAlignMiddle pourcent18 pas-important">
+                                                        <div>Statut</div>
+                                                    </th>
+                                                    <td class="verticalAlignMiddle caseCadreHover">
+                                                            <button id="saisie-cadre" title="Etes-vous employé sous un statut cadre ?" class="option optionCadre">
+                                                                Cadre<span class="textePasImportant">  :  </span>
+                                                            </button>
+                                                            <div class="englobeCaseCadre" title="Etes-vous employé sous un statut cadre ?">
+                                                                <input type="radio" name="statut" id="cadre" class="input-calcul2"></div>
+                                                            <div class="clear"></div>
+                                                    </td>
+                                                    <td class="verticalAlignMiddle caseCadreHover">
+                                                            <button id="saisie-cadre" title="Etes-vous employé sous un statut fonctionnaire ?" class="option optionFonctionnaire">
+                                                                Fonctionnaire<span class="textePasImportant">  :  </span>
+                                                            </button>
+                                                            <div class="englobeCaseCadre" title="Etes-vous employé sous un statut fonctionnaire ?">
+                                                                <input type="radio" name="statut" id="fonctionnaire" class="input-calcul2"></div>
+                                                            <div class="clear"></div>
+                                                    </td>
+                                                    <td class="verticalAlignMiddle caseCadreHover">
+                                                            <button id="saisie-cadre" title="Etes-vous employé en portage salarial ?" class="option optionPortage">
+                                                                Portage<span class="textePasImportant">  : </span>
+                                                            </button>
+                                                            <div class="englobeCaseCadre" title="Etes-vous employé en portage salarial ?">
+                                                                <input type="radio" name="statut" id="portage"  class="input-calcul2"></div>
+                                                            <div class="clear"></div>
+                                                    </td>
+                                                    <td class="verticalAlignMiddle caseCadreHover">
+                                                            <button id="saisie-cadre" title="Avez-vous un statut indépendant ?" class="option optionIndependant">
+                                                                Indépendant<span class="textePasImportant"> / Société : </span>
+                                                            </button>
+                                                            <div class="englobeCaseCadre" title="Avez-vous un statut indépendant">
+                                                                <input type="radio" name="statut" id="independant" class="input-calcul2"></div>
+                                                            <div class="clear"></div>
+                                                    </td>
+                                                    <td class="verticalAlignMiddle caseCadreHover">
+                                                            <button id="saisie-cadre" onClick="setChecked('autoentrepreneur'); return false;" title="Avez-vous un statut Auto Entrepreneur ?" class="option optionAutoEntrepreneur">
+                                                                Auto-Entrepreneur<span class="textePasImportant">  : </span>
+                                                            </button>
+                                                            <div class="englobeCaseCadre" title="Avez-vous un statut indépendant">
+                                                                <input type="radio" name="statut" id="autoentrepreneur" class="input-calcul2"></div>
+                                                            <div class="clear"></div>
+                                                    </td>
+                                                </tr>
+                                            </table> 
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+
+        <div id="totalSalaire"><p class="messageIntro">Cliquez sur n'importe quel nombre pour calculer votre salaire. <br></p></div>
+        <div id="totalImpots"> </div>
+    </div>
+    </div>
+    
+</body>
+</html>
